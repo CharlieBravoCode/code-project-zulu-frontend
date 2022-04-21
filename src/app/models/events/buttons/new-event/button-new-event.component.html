@@ -1,0 +1,27 @@
+<div>
+    <h2>New Event</h2>
+  <br>
+    <label for="events-identifier">Identifier</label>
+    <input id="events-identifier" (keyup)="updateIdentifier($event)">
+  <br>
+    <label for="events-title">Title</label>
+    <input id="events-title" (keyup)="updateTitle($event)">
+  
+  </div>
+  <form>
+    <p>Location</p>
+    <mat-form-field appearance="fill">
+      <mat-label>City or Community</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="City or Community">
+        <mat-option *ngFor="let cities_kreis_steinfurt of cities_kreis_steinfurts" [value]="cities_kreis_steinfurt.value">
+          {{cities_kreis_steinfurt.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- {{selectedValue}} -->
+    
+  </form>
+  <br>
+
+  <button (click)="saveEvent()">Save Event</button>
+  <button (click)="cancelNewEvent()">Cancel</button>
