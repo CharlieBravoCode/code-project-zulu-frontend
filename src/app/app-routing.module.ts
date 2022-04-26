@@ -7,6 +7,8 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ListComponent } from './views/list/list.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { NewEventButtonComponent } from './models/events/buttons/new-event/button-new-event.component';
+import { AuthComponent } from './auth/auth.component';
+
 
 
 const routes: Routes = [
@@ -14,6 +16,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',
+    component: AuthComponent
   },
   {
     path: 'home',

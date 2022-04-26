@@ -36,11 +36,12 @@ import { PopupService } from './models/map-module/map-services/popup.service';
 import { MarkerService } from './models/map-module/map-services/marker.service';
 import { ShapeService } from './models/map-module/map-services/shape.service';
 
-
 import { EventsComponent } from './models/events/events.component';
 import { EventsApiService } from './models/events/events-api.service';
 import { MapApiService } from './models/map-module/map-services/map-api.service';
 
+// Authentication
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { MapApiService } from './models/map-module/map-services/map-api.service'
     DialogBoxEditComponent,
     DialogBoxDeleteComponent,
     MapModuleComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
