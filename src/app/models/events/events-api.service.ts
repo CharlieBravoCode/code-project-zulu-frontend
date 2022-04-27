@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { API_URL } from '../../env';
+//import { API_URL } from '../../env';
+import { API_URL } from '../../../environments/environment';
 import { Event } from './events.model';
 
 const httpOptions = {
@@ -21,7 +22,6 @@ export class EventsApiService {
     return throwError(err.message || 'Error: Unable to complete request.');
   }
 
-   /** GET events from the server */
   getEvents(): Observable<Event[]> {
     return this.http
       .get<Event[]>(`${API_URL}/events`)
@@ -42,13 +42,11 @@ export class EventsApiService {
   editEvent(event: Event, events_id: number): Observable<any> {
     return this.http
       .put(`${API_URL}/events/${events_id}`, event);
-      
   }
 
   deleteEvent(event: Event, events_id: number): Observable<any> {
     return this.http
       .delete(`${API_URL}/events/${events_id}`);
-      
   }
 
 }
