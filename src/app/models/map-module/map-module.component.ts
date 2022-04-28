@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from './map-services/marker.service';
 import { ShapeService } from './map-services/shape.service';
@@ -93,9 +93,25 @@ export class MapModuleComponent implements AfterViewInit {
     stateLayer.bringToBack();
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.initMap();
-    // this.markerService.makeCapitalMarkers(this.map);
+    this.shapeService.getStateShapes().subscribe(states => {
+      this.states = states;
+      this.initStatesLayer();
+    });
+    this.markerService.makeCapitalMarkers(this.map);
+  }
+
+  ngAfterViewInit(): void {
+
+    //this.markerService.makeCapitalCircleMarkers(this.map);
+    
+    
+  }
+
+  /*
+    ngAfterViewInit(): void {
+    this.initMap();
     //this.markerService.makeCapitalCircleMarkers(this.map);
     this.markerService.makeCapitalMarkers(this.map);
     this.shapeService.getStateShapes().subscribe(states => {
@@ -103,4 +119,6 @@ export class MapModuleComponent implements AfterViewInit {
       this.initStatesLayer();
     });
   }
+  */
+  
 }

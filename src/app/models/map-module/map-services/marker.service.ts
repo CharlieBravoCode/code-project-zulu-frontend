@@ -1,16 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import { geoJSON } from 'leaflet';
-import * as geojson from 'geojson';
-import { Feature } from 'geojson';
-import { PopupService } from './popup.service';
-
-import { Subscription } from 'rxjs';
-import { MapApiService } from './map-api.service';
 import { API_URL } from '../../../env';
-import { __values } from 'tslib';
 
 
 @Injectable({
@@ -19,63 +12,88 @@ import { __values } from 'tslib';
 
 export class MarkerService {
   
-  
-  eventsListSubs: Subscription;
-  // eventsListSubsGeoJSON: Subscription;
-  eventsList: any;
-
 
 
   constructor(
    private http: HttpClient,
-   private mapApi: MapApiService,
-   private popupService: PopupService
   ) { }
-
-
    
+  geoData: any
 
-  schiss: any
-
-  fuckyou() {
+  get_GEOJSON() {
     return this.http
       .get<any>(`${API_URL}/events/geojson`).subscribe({
               next: data => {
-                this.schiss = (data);
-                console.log("Here we call the schiss from backend");
-                console.log(this.schiss);
-                console.log("schiss from backend received");
+                this.geoData = (data);
               },
               error: err => console.error(err),
               complete: () => {
-              console.log('done loading crises')
-              console.log('Here we have complete-schiss')
-              console.log(this.schiss);
-              console.log('complete-schiss over')
-              return this.schiss;
+              console.log('get_GEOJSON -> returning this.geoData')
+              console.log(this.geoData);
+              return this.geoData;
               },
-    });
+              
+    }); 
   }
 
-  fuckyou_too() {
-  this.schiss = this.http
-    .get(`${API_URL}/events/geojson`)
-  }
-
-  eventsListSubsGeoJSON: Subscription = this.fuckyou();
-   
-  // crises = JSON.stringify(this.eventsListSubsGeoJSON.add(this.fuckyou()));
-  
-  crises: string = '/assets/data/Crisis_Kreis.Steinfurt.geojson';
-
-  //crises = this.fuckyou_too();
-
+  x = this.get_GEOJSON();
 
   makeCapitalMarkers(map: L.Map): void {
-      
+    L.geoJSON(this.geoData, {
+      pointToLayer: (feature, latlng) => {
+        const circle = L.circleMarker([latlng.lat, latlng.lng], { radius: 20 }).addTo(map);;
+        circle.setStyle({color: 'red'});
+        circle.bindPopup(this.getContent(feature.properties));
+        return circle;
+      }
+    }).addTo(map);
+  }
+
+
+
+
+
+
+  // ### The following snippet sets Marker instead of Circles ###
+  /*  
+    L.geoJSON(this.geoData, {
+      pointToLayer: (feature: Feature, latlng: L.LatLng) => {
+        const marker = L.marker(latlng, {
+          icon: L.icon({
+            iconSize: [25, 41],
+            iconAnchor: [13, 41],
+            iconUrl: 'assets/marker-icon.png',
+            shadowUrl: 'assets/marker-shadow.png'
+          })
+        });
+        marker.bindPopup(this.getContent(feature.properties));
+        return marker;
+      }
+    }).addTo(map);
+  }
+  */
+
+  getContent(properties: any): string {
+    return `
+      <h3>${properties.title}</h3>
+      <p>${properties.location}</p>
+      <p>${properties.identifier}</p>
+    `;
+  }
+
+}
+
+
+
+
+/*
+  makeCapitalMarkers(map: L.Map): void {
+    
     console.log("Input for: Here we try to draw the fucking map")
     console.log(this.crises);
     console.log("Input Map: here the fuck ends")
+
+
     this.http.get(this.crises).subscribe((res: any) => {
       for (const c of res.features) {
         const lon = c.geometry.coordinates[0];
@@ -87,6 +105,9 @@ export class MarkerService {
     });
   }
 }
+
+*/
+
 
 
 
@@ -112,4 +133,103 @@ export class MarkerService {
     geojsonMarkers.addTo(map);
   }); 
 
-  */
+
+
+  //eventsListSubsGeoJSON: Subscription = this.fuckyou();
+
+  // make eventsListSubsGeoJSON into a string and equal to crises
+  //crises = this.eventsListSubsGeoJSON.toJSON;
+  
+
+
+  // crises = (JSON.parse(this.eventsListSubsGeoJSON));
+
+/*
+  fuckyou_too() {
+    this.crises.fuckyou().subscribe(crises => this.geoData = crises);
+    console.log("fuckyou_too")
+    console.log(this.crises);
+    return this.crises;
+  };
+
+/*
+  fuckyou_too() {
+    this.http.get<any>(`${API_URL}/events/geojson`)
+      .subscribe(
+        data => this.newgeoData = newgeoData);
+  }
+
+
+
+
+  // crises= JSON.parse(JSON.stringify(this.eventsListSubsGeoJSON));
+  
+ 
+  //crises = JSON.stringify(this.eventsListSubsGeoJSON.add(this.fuckyou()));
+  
+
+
+  fuckyou_too() {
+  this.geoData = this.http
+    .get(`${API_URL}/events/geojson`)
+  }
+
+  //
+  //crises = this.fuckyou_too();
+
+  eventsListSubsGeoJSON: Subscription = this.fuckyou();
+  
+
+
+fuckyou() {
+    return this.http
+      .get<any>(`${API_URL}/events/geojson`).subscribe({
+              next: data => {
+                this.geoData = (data);
+                //console.log("Here we call the geoData from backend");
+                //console.log(this.geoData);
+                //console.log("geoData from backend received");
+              },
+              error: err => console.error(err),
+              complete: () => {
+              //console.log('done loading crises')
+              console.log('fuckyou -> returning this.geoData')
+              console.log(this.geoData);
+              //c onsole.log('complete-geoData over')
+               return this.geoData;
+              },
+              
+    }); 
+  }
+
+
+
+
+    console.log (this.crises);
+
+    crises: any = '/assets/data/Crisis_Kreis.Steinfurt.geojson';
+
+
+    console.log(this.piss)   
+
+
+  fuckyou_too() {
+    this.http.get(`${API_URL}/events/geojson`)
+      .subscribe(data => {
+      this.values = data;
+    },
+    error => {
+      console.log(error);
+    },
+    () => {
+      console.log('fuckyou_too -> returning this.values')
+      console.log(this.values);
+      return this.values;
+    });
+  }
+
+  values: any;
+    newgeoData: any
+
+   */
+  
