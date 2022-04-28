@@ -1,4 +1,5 @@
 <!-- dialog-box.component.html -->
+
 <h1 mat-dialog-title><strong>Edit</strong></h1>
 <div mat-dialog-content>  
   <mat-form-field>
@@ -8,7 +9,8 @@
     <input placeholder="Name" matInput [(ngModel)]="events.title"(keyup)="updateTitle($event)">
   </mat-form-field>
   <form>
-    <p>Location</p>
+    <h4>Location</h4>
+    <p>{{ events.location }}</p>
     <mat-form-field appearance="fill">
       <mat-label>City or Community</mat-label>
       <mat-select [(ngModel)]="selectedValue" name="City or Community">
@@ -17,7 +19,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    
   </form>
   <!-- 
   <mat-form-field>
@@ -26,6 +27,6 @@
   -->
   </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="editEvent()">Edit</button>
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+  <button mat-button (click)="editEvent()" mat-flat-button color="warn">Edit</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="primary">Cancel</button>
 </div>
