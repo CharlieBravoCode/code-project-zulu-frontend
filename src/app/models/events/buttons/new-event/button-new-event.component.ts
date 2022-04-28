@@ -27,6 +27,8 @@ export class NewEventButtonComponent {
   selectedValue: string;
 
 
+  // Value is a placeholder for a later feature where the range of cities 
+  // will be pulled from a database based on the responsible district
   cities_kreis_steinfurts: cities_kreis_steinfurt[] = [
     {value: 'Altenberge', viewValue: 'Altenberge'},
     {value: 'Emsdetten', viewValue: 'Emsdetten'},
@@ -71,6 +73,8 @@ export class NewEventButtonComponent {
 
   saveEvent() {
     this.events.location = this.selectedValue
+
+    // Switch Statement is a palceholder for a later feature of taking GPS coordinates from a database
 
     switch (this.selectedValue) {
       case 'Altenberge':

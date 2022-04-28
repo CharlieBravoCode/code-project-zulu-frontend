@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',
-    component: AuthComponent
+    // component: AuthComponent
   },
   {
     path: 'home',
@@ -45,6 +45,10 @@ const routes: Routes = [
   {
     path: 'new-event',
     component: NewEventButtonComponent,
+  },
+  {
+    path: 'login',
+    component: AuthComponent,
   },
   {
     path: '**',

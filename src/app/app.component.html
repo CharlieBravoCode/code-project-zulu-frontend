@@ -1,13 +1,22 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
-    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-  </button>
-  ZULU CRISES HUB
+
+    <mat-toolbar-row>
+      <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+      <div >
+        <h1>ZULU CRISIS HUB</h1>
+        </div>
+        <span class="flexExpand"></span>
+        <div >
+          <a mat-button [routerLink]="'/login'"> Login </a>
+        </div>
+      </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container>

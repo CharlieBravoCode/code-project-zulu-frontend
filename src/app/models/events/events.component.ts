@@ -10,8 +10,6 @@ import { DialogBoxDeleteComponent } from './buttons/dialog-box-delete/dialog-box
 
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 
 
 

@@ -42,6 +42,7 @@ import { MapApiService } from './models/map-module/map-services/map-api.service'
 
 // Authentication
 import { AuthComponent } from './auth/auth.component';
+import { AuthApiService } from './auth/auth-api.service';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { AuthComponent } from './auth/auth.component';
   ],
   providers: [
     EventsApiService,
+    AuthApiService,
     MapApiService,
     MarkerService, 
     PopupService,
