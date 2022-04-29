@@ -138,7 +138,6 @@ export class MapModuleComponent implements OnInit, AfterViewInit {
     });
     this.markerService.get_GEOJSON;
     this.markerService.makeCapitalMarkers(this.map)
-    
   }
 
 

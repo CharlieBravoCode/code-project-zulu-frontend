@@ -204,6 +204,9 @@ export class DialogBoxEditComponent {
         this.redirectTo('/list'),
         console.error,
       );
+    
+    this.router.navigate(['/list']);
+    
     }
 
 

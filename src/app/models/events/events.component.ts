@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Event } from './events.model';
 import { EventsApiService } from './events-api.service';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from "@angular/router";
 
 import { DialogBoxEditComponent } from './buttons/dialog-box-edit/dialog-box-edit.component';
 import { DialogBoxDeleteComponent } from './buttons/dialog-box-delete/dialog-box-delete.component';
@@ -34,9 +35,21 @@ export class EventsComponent implements OnInit, OnDestroy {
   public clickedRow = new Set<Event>();
   selection = new SelectionModel<Event>(false, []);
 
-  constructor(private eventsApi: EventsApiService, public dialog: MatDialog) {
+  constructor(private eventsApi: EventsApiService, public dialog: MatDialog, private router: Router) {
   }
   
+
+  buttonUpdateList() {
+    this.eventsListSubs = this.eventsApi
+      .getEvents()
+      .subscribe(res => {
+          this.eventsList = res;
+        },
+        console.error
+      );
+  }
+    
+ 
   
   ngOnInit() {
     this.eventsListSubs = this.eventsApi
@@ -61,13 +74,13 @@ export class EventsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.table.renderRows();
     })
-      this.eventsListSubs = this.eventsApi
-        .getEvents()
-        .subscribe(res => {
-            this.eventsList = res;
-          },
-          console.error
-        );
+    this.eventsListSubs = this.eventsApi
+      .getEvents()
+      .subscribe(res => {
+          this.eventsList = res;
+        },
+        console.error
+      );
   }
 
   openDialog_delete(action,obj) {
@@ -77,17 +90,17 @@ export class EventsComponent implements OnInit, OnDestroy {
       data:obj
     })
     // After closing the list componant should be refreshed
-
     dialogRef.afterClosed().subscribe(result => {
       this.table.renderRows();
     })
-      this.eventsListSubs = this.eventsApi
-        .getEvents()
-        .subscribe(res => {
-            this.eventsList = res;
-          },
-          console.error
-        );
+    this.eventsListSubs = this.eventsApi
+      .getEvents()
+      .subscribe(res => {
+          this.eventsList = res;
+        },
+        console.error
+      );
+      
   }
 
 
