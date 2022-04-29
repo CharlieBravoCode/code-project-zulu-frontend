@@ -8,6 +8,9 @@
   }
 }
 
+
+
+
 div.events {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -15,11 +18,9 @@ div.events {
   }
   
   button.new-event {
-    position: top;
-    bottom: 15px;
-    right: 15px;
-    margin-left: 20px;
-    margin-top: 20px;
+    position: absolute;
+    top: 30px;
+    right: 45px;
   }
 
   button.edit {

@@ -201,7 +201,7 @@ export class DialogBoxEditComponent {
       .editEvent(this.events, this.events.id)
       .subscribe(
         () => 
-        this.redirectTo('//list'),
+        this.redirectTo('/list'),
         console.error,
       );
     }

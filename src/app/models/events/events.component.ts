@@ -49,7 +49,6 @@ export class EventsComponent implements OnInit, OnDestroy {
       
       var eventsList = this.eventsList;
   }
-
   
   openDialog_edit(action,obj) {
     obj.action = action;

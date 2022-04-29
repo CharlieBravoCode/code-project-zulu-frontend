@@ -8,6 +8,7 @@ import { ListComponent } from './views/list/list.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { NewEventButtonComponent } from './models/events/buttons/new-event/button-new-event.component';
 import { AuthComponent } from './auth/auth.component';
+import { MapModuleComponent } from './models/map-module/map-module.component';
 
 
 
@@ -15,12 +16,12 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
-    // component: AuthComponent
+    redirectTo: 'list',
   },
   {
     path: 'home',
-    component: DashboardComponent,
+    pathMatch: 'full',
+    redirectTo: 'list',
   },
   {
     path: 'dashboard',

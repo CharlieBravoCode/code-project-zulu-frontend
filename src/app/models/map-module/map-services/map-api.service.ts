@@ -20,12 +20,4 @@ export class MapApiService {
     
   }
 
-  getGeoJSON_new(): Observable<any> {
-    const shit = this.http
-      .get(`${API_URL}/events/geojson`);
-    
-    console.log("This is" + shit);
-    return shit; 
-  }
- 
 }

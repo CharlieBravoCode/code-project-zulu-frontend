@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from './map-services/marker.service';
 import { ShapeService } from './map-services/shape.service';
+import { Router } from '@angular/router';
+
 
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
@@ -24,13 +26,14 @@ L.Marker.prototype.options.icon = iconDefault;
   templateUrl: './map-module.component.html',
   styleUrls: ['./map-module.component.scss']
 })
-export class MapModuleComponent implements AfterViewInit {
+export class MapModuleComponent implements OnInit, AfterViewInit {
   private map;
   private states;
 
   constructor(
     private markerService: MarkerService,
-    private shapeService: ShapeService
+    private shapeService: ShapeService, 
+    private router: Router
   ) { }
 
   private initMap(): void {
@@ -93,32 +96,65 @@ export class MapModuleComponent implements AfterViewInit {
     stateLayer.bringToBack();
   }
 
+
+  sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  reloadCurrentPage() {
+      this.markerService.get_GEOJSON;
+      this.markerService.makeCapitalMarkers(this.map)
+      this.markerService.get_GEOJSON;
+      this.markerService.makeCapitalMarkers(this.map)
+     }
+
+  async buttonReloadCurrentPage() {
+      this.reloadCurrentPage();
+      await this.sleep(100);
+      this.reloadCurrentPage()
+    }
+  
+
   ngOnInit(): void {
+    this.markerService.makeCapitalMarkers(this.map);
+    this.buttonReloadCurrentPage();
     this.initMap();
+    this.markerService.get_GEOJSON;
+    this.markerService.makeCapitalMarkers(this.map);
     this.shapeService.getStateShapes().subscribe(states => {
       this.states = states;
       this.initStatesLayer();
     });
-    this.markerService.makeCapitalMarkers(this.map);
+    this.markerService.get_GEOJSON;
+    this.markerService.makeCapitalMarkers(this.map)
+
+    
   }
 
   ngAfterViewInit(): void {
-
-    //this.markerService.makeCapitalCircleMarkers(this.map);
-    
-    
-  }
-
-  /*
-    ngAfterViewInit(): void {
     this.initMap();
-    //this.markerService.makeCapitalCircleMarkers(this.map);
+    this.markerService.get_GEOJSON;
     this.markerService.makeCapitalMarkers(this.map);
     this.shapeService.getStateShapes().subscribe(states => {
       this.states = states;
       this.initStatesLayer();
     });
+    this.markerService.get_GEOJSON;
+    this.markerService.makeCapitalMarkers(this.map)
+    
   }
-  */
+
+
+/*
+  ngAfterViewInit(): void {
+    this.initMap();
+    this.markerService.get_GEOJSON;
+    this.markerService.makeCapitalMarkers(this.map);
+    this.shapeService.getStateShapes().subscribe(states => {
+      this.states = states;
+      this.initStatesLayer();
+    });
+    this.markerService.get_GEOJSON;
+    this.markerService.makeCapitalMarkers(this.map)
+  }
+*/
   
 }

@@ -69,7 +69,7 @@ export class DialogBoxDeleteComponent {
       .deleteEvent(this.events, this.events.id)
       .subscribe(
         () => 
-        this.redirectTo('//list'),
+        this.redirectTo('/list'),
         console.error,
       );
     }
