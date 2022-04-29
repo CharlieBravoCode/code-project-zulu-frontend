@@ -16,7 +16,7 @@ const httpOptions = {
 
     constructor(private http: HttpClient) {
     }
-
+    
     login_send_credentials(user: UserModel): Observable<any> {
       return this.http
             .post(`${API_URL}/auth/login`, user);

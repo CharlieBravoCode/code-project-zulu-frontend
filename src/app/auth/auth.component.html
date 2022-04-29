@@ -1,13 +1,16 @@
-<div>
-    <h2>Login</h2>
-<br>
-    <label for="user-username">Username</label>
-    <input id="user-username" (keyup)="loginUsername($event)">
-  <br>
-    <label for="user-password">Password</label>
-    <input id="user-password" (keyup)="loginPassword($event)">
-  </div>
-  
-  <br>
 
-  <button (click)="loginUser()">Login</button>
+<mat-card id="card" style="text-align: center;">
+	<mat-card-title>
+	</mat-card-title>
+	<mat-card-content>
+		<br>
+			<mat-form-field>
+				<input matInput placeholder="Username" id="user-username" (keyup)="loginUsername($event)">  
+			</mat-form-field>
+		<br/>
+			<mat-form-field>
+				<input matInput placeholder="Password" id="user-password" (keyup)="loginPassword($event)">
+			</mat-form-field>
+		<br/>
+			<button mat-raised-button color="primary" style="margin-right:5px;" button (click)="loginUser()">Login</button>
+	</mat-card-content>
