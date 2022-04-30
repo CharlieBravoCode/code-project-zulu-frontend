@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +49,7 @@ import { AuthApiService } from './auth/auth-api.service';
 // Auth0
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './auth0/userprofile.component';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 
 @NgModule({
@@ -89,7 +90,18 @@ import { UserProfileComponent } from './auth0/userprofile.component';
     MatCardModule,
     AuthModule.forRoot({
       domain: 'dev-l5guaxfx.eu.auth0.com',
-      clientId: 'hnHVr1jzQP2jllzIFgWP7dTxQVoY0o8n'
+      clientId: 'hnHVr1jzQP2jllzIFgWP7dTxQVoY0o8n',
+      audience: 'https://code-project-zulu-backend.herokuapp.com/',
+      // The AuthHttpInterceptor configuration
+      httpInterceptor: {
+        allowedList: [
+          'https://code-project-zulu-backend.herokuapp.com/*',
+          'https://code-project-zulu-backend.herokuapp.com/api/*',
+          'https://code-project-zulu-backend.herokuapp.com/events/*',
+          'https://code-project-zulu-backend.herokuapp.com/events',
+          '/*'
+        ]
+      }
     }),
   ],
   providers: [
@@ -99,6 +111,7 @@ import { UserProfileComponent } from './auth0/userprofile.component';
     MarkerService, 
     PopupService,
     ShapeService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
