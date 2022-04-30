@@ -19,11 +19,13 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'list',
+    canActivate: [AuthGuard],
   },
   {
     path: 'home',
     pathMatch: 'full',
     redirectTo: 'list',
+    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
