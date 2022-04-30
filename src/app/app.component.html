@@ -13,7 +13,14 @@
         </div>
         <span class="flexExpand"></span>
         <div >
-          <a mat-button [routerLink]="'/login'"> Login </a>
+          <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+            <a mat-button (click)="auth.logout({ returnTo: document.location.origin })">
+              Log out
+            </a>
+          </ng-container>
+          <ng-template #loggedOut>
+            <a mat-button (click)="auth.loginWithRedirect()">Login</a>
+          </ng-template>
         </div>
       </mat-toolbar-row>
 </mat-toolbar>

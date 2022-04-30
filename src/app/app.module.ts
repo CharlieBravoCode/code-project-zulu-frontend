@@ -31,6 +31,7 @@ import { DialogBoxEditComponent } from './models/events/buttons/dialog-box-edit/
 import { DialogBoxDeleteComponent } from './models/events/buttons/dialog-box-delete/dialog-box-delete.component';
 import { MapModuleComponent } from './models/map-module/map-module.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { AuthButtonComponent } from './auth0/authbutton.component';
 
 // Map-Module Services
 import { PopupService } from './models/map-module/map-services/popup.service';
@@ -44,6 +45,10 @@ import { MapApiService } from './models/map-module/map-services/map-api.service'
 // Authentication
 import { AuthComponent } from './auth/auth.component';
 import { AuthApiService } from './auth/auth-api.service';
+
+// Auth0
+import { AuthModule } from '@auth0/auth0-angular';
+import { UserProfileComponent } from './auth0/userprofile.component';
 
 
 @NgModule({
@@ -60,7 +65,9 @@ import { AuthApiService } from './auth/auth-api.service';
     DialogBoxEditComponent,
     DialogBoxDeleteComponent,
     MapModuleComponent,
-    AuthComponent
+    AuthComponent,
+    AuthButtonComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,11 @@ import { AuthApiService } from './auth/auth-api.service';
     MatInputModule,    
     LeafletModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    AuthModule.forRoot({
+      domain: 'dev-l5guaxfx.eu.auth0.com',
+      clientId: 'hnHVr1jzQP2jllzIFgWP7dTxQVoY0o8n'
+    }),
   ],
   providers: [
     EventsApiService,
