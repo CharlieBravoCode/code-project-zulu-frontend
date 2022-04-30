@@ -19,7 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 
-
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ListComponent } from './views/list/list.component';
 import { MapComponent } from './views/map/map.component';

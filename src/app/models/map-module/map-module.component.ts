@@ -102,20 +102,29 @@ export class MapModuleComponent implements OnInit, AfterViewInit {
   reloadCurrentPage() {
       this.markerService.get_GEOJSON;
       this.markerService.makeCapitalMarkers(this.map)
-      this.markerService.get_GEOJSON;
-      this.markerService.makeCapitalMarkers(this.map)
      }
 
   async buttonReloadCurrentPage() {
-      this.reloadCurrentPage();
+      this.map.remove();
+      this.initMap();
+      this.markerService.get_GEOJSON;
+      this.markerService.makeCapitalMarkers(this.map);
+
       await this.sleep(100);
       this.reloadCurrentPage()
+
+      this.markerService.makeCapitalMarkers(this.map);
+      this.shapeService.getStateShapes().subscribe(states => {
+        this.states = states;
+        this.initStatesLayer();
+    });
     }
   
 
   ngOnInit(): void {
     this.markerService.makeCapitalMarkers(this.map);
     this.buttonReloadCurrentPage();
+    this.map.remove();
     this.initMap();
     this.markerService.get_GEOJSON;
     this.markerService.makeCapitalMarkers(this.map);
@@ -125,6 +134,8 @@ export class MapModuleComponent implements OnInit, AfterViewInit {
     });
     this.markerService.get_GEOJSON;
     this.markerService.makeCapitalMarkers(this.map)
+
+  
     
   }
 
@@ -138,6 +149,7 @@ export class MapModuleComponent implements OnInit, AfterViewInit {
     });
     this.markerService.get_GEOJSON;
     this.markerService.makeCapitalMarkers(this.map)
+
   }
 
 
