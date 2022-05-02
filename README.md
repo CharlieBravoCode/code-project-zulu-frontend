@@ -12,14 +12,21 @@ The frontend and backend are currently access-protected via [auth0](https://auth
 
 The database (PostgresSQL) is hosted on [Heroku](https://www.heroku.com/postgres).
 
+Christoph Brauer solely maintains this project, codebase, and all its repositories. No other contributor has been involved in the development of this codebase.
+
 </br>
 
 # Current Features
+
+The application is currently in a very early stage (pre minimum viable product). The following features are currently implemented:
 
 The application allows users to track and manage their operations at this stage.
 Users can, via a list view, create new crisis events and track crisis events. This information is automatically accessible to other application users.
 
 Users can visualize the current state of crisis events in a map view. 
+
+Currently, the user's area of responsibility is preconfigured to the administrative district of Steinfurt ([Kreis Steinfurt](https://en.wikipedia.org/wiki/Steinfurt_(district))) in Germany. The selection of locations is, therefore, by design, walled. 
+
 
 
 </br>
